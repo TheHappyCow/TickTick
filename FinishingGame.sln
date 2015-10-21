@@ -1,28 +1,38 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagement", "..\GameManagement\GameManagement.csproj", "{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTick", "..\Content\TickTick\TickTick.contentproj", "{4EC009E0-6CEA-40D8-8409-9E30C42C9C5D}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTick5", "TickTick5\TickTick5.csproj", "{9262BB78-D771-4324-B1C7-518DB94D3D66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagement", "TickTick5\GameManagement\GameManagement.csproj", "{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Content", "Content\Content.contentproj", "{95C1CFAE-4153-4AA6-BBAF-DEA679AA2D13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Debug|x86.ActiveCfg = Debug|x86
-		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Debug|x86.Build.0 = Debug|x86
-		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Release|x86.ActiveCfg = Release|x86
-		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Release|x86.Build.0 = Release|x86
-		{4EC009E0-6CEA-40D8-8409-9E30C42C9C5D}.Debug|x86.ActiveCfg = Debug|x86
-		{4EC009E0-6CEA-40D8-8409-9E30C42C9C5D}.Release|x86.ActiveCfg = Release|x86
+		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Debug|x86.ActiveCfg = Debug|x86
 		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Debug|x86.Build.0 = Debug|x86
+		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Release|Any CPU.ActiveCfg = Release|x86
 		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Release|x86.ActiveCfg = Release|x86
 		{9262BB78-D771-4324-B1C7-518DB94D3D66}.Release|x86.Build.0 = Release|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Debug|x86.ActiveCfg = Debug|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Debug|x86.Build.0 = Debug|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Release|Any CPU.ActiveCfg = Release|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Release|x86.ActiveCfg = Release|x86
+		{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}.Release|x86.Build.0 = Release|x86
+		{95C1CFAE-4153-4AA6-BBAF-DEA679AA2D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C1CFAE-4153-4AA6-BBAF-DEA679AA2D13}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95C1CFAE-4153-4AA6-BBAF-DEA679AA2D13}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C1CFAE-4153-4AA6-BBAF-DEA679AA2D13}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
