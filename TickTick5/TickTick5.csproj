@@ -184,18 +184,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Content\TickTick\TickTick.contentproj">
-      <Project>{4EC009E0-6CEA-40D8-8409-9E30C42C9C5D}</Project>
-      <Name>TickTick %28Content%29</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GameManagement\GameManagement.csproj">
-      <Project>{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}</Project>
-      <Name>GameManagement</Name>
-    </ProjectReference>
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\app.manifest" />
+    <ProjectReference Include="..\Content\TickTick\TickTick.contentproj">
+      <Project>{4EC009E0-6CEA-40D8-8409-9E30C42C9C5D}</Project>
+      <Name>TickTick</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\GameManagement\GameManagement.csproj">
+      <Project>{6ceb5f37-0bfa-4a0d-8db7-b25ecd81caae}</Project>
+      <Name>GameManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
