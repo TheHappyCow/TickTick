@@ -22,6 +22,7 @@ class Turtle : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        //Hier is hij gevaarlijk
         if (sneezeTime > 0)
         {
             this.PlayAnimation("sneeze");
@@ -32,6 +33,7 @@ class Turtle : AnimatedGameObject
                 sneezeTime = 0.0f;
             }
         }
+            //Hier is hij onschadelijk
         else if (idleTime > 0)
         {
             this.PlayAnimation("idle");
@@ -46,13 +48,16 @@ class Turtle : AnimatedGameObject
         CheckPlayerCollision();
     }
 
+    //Kijkt of hij de speler raakt
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
         if (!this.CollidesWith(player))
             return;
+        //Als hij gevaarlijk is, gaat de speler dood
         if (sneezeTime > 0)
             player.Die(false);
+        //Als hij onschadelijk is, krijgt de speler een boost omhoog
         else if (idleTime > 0 && player.Velocity.Y > 0)
             player.Jump(1500);
     }

@@ -20,7 +20,7 @@ public class AnimatedGameObject : SpriteGameObject
 
     public void PlayAnimation(string id)
     {
-        if (sprite == animations[id])
+        if (sprite == animations[id])   //Als het al geladen is
             return;
         if (sprite != null)
             animations[id].Mirror = sprite.Mirror;

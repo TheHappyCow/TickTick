@@ -2,6 +2,7 @@
 
 public class Collision
 {
+    //Geeft de linksboven-coördinaten van het gebied van overlap van twee boundingboxes
     public static Vector2 CalculateIntersectionDepth(Rectangle rectA, Rectangle rectB)
     {
         Vector2 minDistance = new Vector2(rectA.Width + rectB.Width,
@@ -21,6 +22,7 @@ public class Collision
         return depth;
     }
 
+    //Controleert over welk gebied er overlap is van twee boundingboxes en geeft dit gebied als een rectangle terug
     public static Rectangle Intersection(Rectangle rect1, Rectangle rect2)
     {
         int xmin = (int)MathHelper.Max(rect1.Left, rect2.Left);

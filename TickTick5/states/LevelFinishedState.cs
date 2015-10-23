@@ -16,6 +16,7 @@ class LevelFinishedState : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        //Als er op spatie wordt gedrukt, kan je verder spelen met het volgende level
         if (!inputHelper.KeyPressed(Keys.Space))
             return;
         GameEnvironment.GameStateManager.SwitchTo("playingState");

@@ -27,6 +27,7 @@ class LevelButton : GameObjectList
         this.Add(text);
     }
 
+    //Kijkt of iemand op de level drukt en die is beschikbaar
     public override void HandleInput(InputHelper inputHelper)
     {
         pressed = inputHelper.MouseLeftButtonPressed() && !level.Locked &&

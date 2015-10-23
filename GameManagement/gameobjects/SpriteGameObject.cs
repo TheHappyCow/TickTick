@@ -49,6 +49,7 @@ public class SpriteGameObject : GameObject
         }
     }
 
+    //Hiermee kan je de sprite spiegelen
     public bool Mirror
     {
         get { return sprite.Mirror; }
@@ -61,6 +62,7 @@ public class SpriteGameObject : GameObject
         set { this.origin = value; }
     }
 
+    //Een geupdate versie van de property BoundingBox van de GameObject klasse (met nieuwe grote van de rectangle)
     public override Rectangle BoundingBox
     {
         get
@@ -71,11 +73,15 @@ public class SpriteGameObject : GameObject
         }
     }
 
+    //Controleert of het object botst/overlapt met een ander object
     public bool CollidesWith(SpriteGameObject obj)
     {
+        //Ze botsen/overlappen niet als sowieso een van de twee onzichtbaar is of als de twee boundingboxes niet overlappen
         if (!this.Visible || !obj.Visible || !BoundingBox.Intersects(obj.BoundingBox))
             return false;
+        //Roept methode aan die controleert over welk gebied de twee boundingboxes met elkaar overlappen
         Rectangle b = Collision.Intersection(BoundingBox, obj.BoundingBox);
+        //Gaat dit gebied af en controleert per pixel of er overlap is
         for (int x = 0; x < b.Width; x++)
             for (int y = 0; y < b.Height; y++)
             {

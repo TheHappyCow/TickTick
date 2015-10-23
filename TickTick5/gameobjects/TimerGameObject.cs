@@ -7,6 +7,7 @@ class TimerGameObject : TextGameObject
     protected bool running;
     protected double multiplier;
 
+    //Dit is de timer, die bijhoudt hoeveel tijd je nog over hebt om een level te halen
     public TimerGameObject(int layer = 0, string id = "")
         : base("Fonts/Hud", layer, id)
     {
@@ -26,6 +27,7 @@ class TimerGameObject : TextGameObject
         DateTime timeleft = new DateTime(timeLeft.Ticks);
         this.Text = timeleft.ToString("mm:ss");
         this.color = Color.Yellow;
+        //Als er nog maar weinig tijd over is, wordt de teller rood
         if (timeLeft.TotalSeconds <= 10 && (int)timeLeft.TotalSeconds % 2 == 0)
             this.color = Color.Red;
     }
@@ -43,6 +45,7 @@ class TimerGameObject : TextGameObject
         set { running = value; }
     }
 
+    //Laat de tijd sneller of langzamer lopen
     public double Multiplier
     {
         get {return multiplier; }

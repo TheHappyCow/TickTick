@@ -27,6 +27,7 @@ class PlayingState : IGameLoopObject
         }
     }
 
+    //Hier kan je het huidige level aanpassen
     public int CurrentLevelIndex
     {
         get
@@ -85,6 +86,7 @@ class PlayingState : IGameLoopObject
             GameEnvironment.GameStateManager.SwitchTo("levelMenu");
         else
         {
+            //Door naar het volgende level
             CurrentLevelIndex++;
             levels[currentLevelIndex].Locked = false;
         }
@@ -97,6 +99,7 @@ class PlayingState : IGameLoopObject
             levels.Add(new Level(currLevel));
     }
 
+    //kijkt of een level al beschikbaar is en of hij al voltooid is
     public void LoadLevelsStatus(string path)
     {
         List<string> textlines = new List<string>();
@@ -114,6 +117,7 @@ class PlayingState : IGameLoopObject
         fileReader.Close();
     }
 
+    //Veranderd de status van een level, dus: voltooid of unlocked
     public void WriteLevelsStatus(string path)
     {
         // read the lines

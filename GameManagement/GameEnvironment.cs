@@ -54,8 +54,10 @@ public class GameEnvironment : Game
         get { return gameSettingsManager; }
     }
 
+    //Zet het scherm op fullscreen en schaalt de sprites dusdanig dat ze correct op het scherm worden getekend
     public void SetFullScreen(bool fullscreen = true)
     {
+        //Berekent de huidige schaal van het scherm
         float scalex = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / (float)screen.X;
         float scaley = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / (float)screen.Y;
         float finalscale = 1f;
@@ -76,6 +78,7 @@ public class GameEnvironment : Game
         graphics.PreferredBackBufferHeight = (int)(finalscale * screen.Y);
         graphics.IsFullScreen = fullscreen;
         graphics.ApplyChanges();
+        //Zorgt ervoor dat de muis ook goed geschaald wordt
         inputHelper.Scale = new Vector2((float)GraphicsDevice.Viewport.Width / screen.X,
                                         (float)GraphicsDevice.Viewport.Height / screen.Y);
         spriteScale = Matrix.CreateScale(inputHelper.Scale.X, inputHelper.Scale.Y, 1);
@@ -90,8 +93,10 @@ public class GameEnvironment : Game
     protected void HandleInput()
     {
         inputHelper.Update();
+        //Zorgt ervoor dat we het scherm kunnen sluiten ook al staat hij op fullscreen
         if (inputHelper.KeyPressed(Keys.Escape))
             this.Exit();
+        //Wisselt tussen fullscreen en windowmode
         if (inputHelper.KeyPressed(Keys.F5))
             SetFullScreen(!graphics.IsFullScreen);
         gameStateManager.HandleInput(inputHelper);

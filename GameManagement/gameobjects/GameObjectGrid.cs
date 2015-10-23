@@ -15,6 +15,7 @@ public class GameObjectGrid : GameObject
                 grid[x, y] = null;
     }
 
+    //Voegt een object toe aan het grid
     public void Add(GameObject obj, int x, int y)
     {
         grid[x, y] = obj;
@@ -24,6 +25,7 @@ public class GameObjectGrid : GameObject
 
     public GameObject Get(int x, int y)
     {
+        //Voorkomt error dat index uit de matrix ligt door eerst te controleren
         if (x >= 0 && x < grid.GetLength(0) && y >= 0 && y < grid.GetLength(1))
             return grid[x, y];
         else
@@ -38,6 +40,7 @@ public class GameObjectGrid : GameObject
         }
     }
 
+    //De anchorposition is de werkelijke positie van het voorwerp is het speelveld
     public Vector2 GetAnchorPosition(GameObject s)
     {
         for (int x = 0; x < Columns; x++)
@@ -87,6 +90,7 @@ public class GameObjectGrid : GameObject
             obj.Draw(gameTime, spriteBatch);
     }
 
+    //Spreekt de reset methode van de GameObject klasse aan
     public override void Reset()
     {
         base.Reset();

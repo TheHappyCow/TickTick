@@ -23,6 +23,7 @@ public class GameStateManager : IGameLoopObject
         return gameStates[name];
     }
 
+    //Wissel van gamestates
     public void SwitchTo(string name)
     {
         if (gameStates.ContainsKey(name))

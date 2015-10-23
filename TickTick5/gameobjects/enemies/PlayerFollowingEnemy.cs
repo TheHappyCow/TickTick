@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 
 class PlayerFollowingEnemy : PatrollingEnemy
 {
+    //Upgrade van de PatrollingEnemy; deze volgt de speler
     public override void Update(GameTime gameTime)
     {
         GameObjectList gameWorld = Root as GameObjectList;

@@ -16,7 +16,7 @@ class PatrollingEnemy : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (waitTime > 0)
+        if (waitTime > 0) //Als hij moet wachten voor het draaien
         {
             waitTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (waitTime <= 0.0f)
@@ -30,6 +30,7 @@ class PatrollingEnemy : AnimatedGameObject
                 posX = this.BoundingBox.Right;
             int tileX = (int)Math.Floor(posX / tiles.CellWidth);
             int tileY = (int)Math.Floor(position.Y / tiles.CellHeight);
+            //Hij moet wachten als hij aan het einde is van zijn plankje en dan moet hij zich omdraaien
             if (tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
                 tiles.GetTileType(tileX, tileY) == TileType.Background)
             {
@@ -40,6 +41,7 @@ class PatrollingEnemy : AnimatedGameObject
         this.CheckPlayerCollision();
     }
 
+    //Controleert of hij de speler raakt
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
@@ -47,6 +49,7 @@ class PatrollingEnemy : AnimatedGameObject
             player.Die(false);
     }
 
+    //Draait de sprite om en de richting van de snelheid
     public void TurnAround()
     {
         Mirror = !Mirror;

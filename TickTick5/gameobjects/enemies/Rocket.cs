@@ -41,6 +41,7 @@ class Rocket : AnimatedGameObject
             this.Reset();
     }
 
+    //Controleert of hij de speler raakt
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;

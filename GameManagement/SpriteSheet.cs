@@ -22,6 +22,7 @@ public class SpriteSheet
         if (assetSplit.Length <= 1)
             return;
 
+        //Bepaalt het aantal kolommen en eventueel het aantal rijen van de spritesheet
         string sheetNrData = assetSplit[assetSplit.Length - 1];
         string[] colrow = sheetNrData.Split('x');
         this.sheetColumns = int.Parse(colrow[0]);
@@ -31,6 +32,7 @@ public class SpriteSheet
 
     public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 origin)
     {
+        //Bepaalt welk onderdeel van de spritesheet getekend moet worden dmv sheetindex
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;
         Rectangle spritePart = new Rectangle(columnIndex * this.Width, rowIndex * this.Height, this.Width, this.Height);
@@ -41,6 +43,7 @@ public class SpriteSheet
             0.0f, origin, 1.0f, spriteEffects, 0.0f);
     }
 
+    //Bepaalt de kleur van een bepaalde pixel in de sprite
     public Color GetPixelColor(int x, int y)
     {
         int column_index = sheetIndex % sheetColumns;

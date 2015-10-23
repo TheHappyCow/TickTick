@@ -16,6 +16,7 @@ class GameOverState : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        //Als er op spatie wordt gedrukt, begint het spel opnieuw
         if (!inputHelper.KeyPressed(Keys.Space))
             return;
         playingState.Reset();

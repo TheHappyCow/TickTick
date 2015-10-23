@@ -48,6 +48,7 @@ public abstract class GameObject : IGameLoopObject
         set { velocity = value; }
     }
 
+    //Globale positie is de echte positie van een object in het speelveld. Position is de lokale positie, dus tov de ouder
     public virtual Vector2 GlobalPosition
     {
         get
@@ -59,6 +60,7 @@ public abstract class GameObject : IGameLoopObject
         }
     }
 
+    //Wordt gebruikt om de top van de hiërarchie te vinden ofwel de Allfather
     public GameObject Root
     {
         get
@@ -101,6 +103,7 @@ public abstract class GameObject : IGameLoopObject
         set { visible = value; }
     }
 
+    //Het object geplaatst in een rectangle (hier nog 0 bij 0 groot)
     public virtual Rectangle BoundingBox
     {
         get

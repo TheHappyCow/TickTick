@@ -21,6 +21,7 @@ partial class Level : GameObjectList
             backgrounds.Add(mountain);
         }
 
+        //Creëert de wolkjes en plaatst ze in de achtergrond
         Clouds clouds = new Clouds(2);
         backgrounds.Add(clouds);
         this.Add(backgrounds);
@@ -40,13 +41,16 @@ partial class Level : GameObjectList
         this.Add(new GameObjectList(1, "waterdrops"));
         this.Add(new GameObjectList(2, "enemies"));
 
+        //Laadt de tekst waarin het level beschreven staat
         this.LoadTiles("Content/Levels/" + levelIndex + ".txt");
     }
 
+    //Kijkt of het level voltooid is
     public bool Completed
     {
         get
         {
+            //Hij komt bij de finish aan en heeft alle waterdrops
             SpriteGameObject exitObj = this.Find("exit") as SpriteGameObject;
             Player player = this.Find("player") as Player;
             if (!exitObj.CollidesWith(player))
@@ -69,12 +73,14 @@ partial class Level : GameObjectList
         }
     }
 
+    //Dit level mag nog niet gespeeld worden
     public bool Locked
     {
         get { return locked; }
         set { locked = value; }
     }
 
+    //Dit level is voltooid
     public bool Solved
     {
         get { return solved; }

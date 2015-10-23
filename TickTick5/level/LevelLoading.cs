@@ -6,6 +6,7 @@ partial class Level : GameObjectList
 {
     public void LoadTiles(string path)
     {
+        //Haalt de tekst uit tekstfile
         int width;
         List<string> textlines = new List<string>();
         StreamReader fileReader = new StreamReader(path);
@@ -16,8 +17,10 @@ partial class Level : GameObjectList
             textlines.Add(line);
             line = fileReader.ReadLine();
         }
+        //Creëert het speelveld
         TileField tiles = new TileField(textlines.Count - 1, width, 1, "tiles");
 
+        //Plaatst de hintbutton
         GameObjectList hintfield = new GameObjectList(100);
         this.Add(hintfield);
         string hint = textlines[textlines.Count - 1];
@@ -32,6 +35,7 @@ partial class Level : GameObjectList
         VisibilityTimer hintTimer = new VisibilityTimer(hintfield, 1, "hintTimer");
         this.Add(hintTimer);
 
+        //Vult het speelveld met de goede tiles
         this.Add(tiles);
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
@@ -43,6 +47,7 @@ partial class Level : GameObjectList
             }
     }
 
+    //Laadt een tile afhankelijk van het character in de tekst op de positie x, y
     private Tile LoadTile(char tileType, int x, int y)
     {
         switch (tileType)
@@ -83,6 +88,8 @@ partial class Level : GameObjectList
                 return new Tile("");
         }
     }
+
+    //Laadt de verschillende tiles
 
     private Tile LoadBasicTile(string name, TileType tileType, bool hot = false, bool ice = false)
     {

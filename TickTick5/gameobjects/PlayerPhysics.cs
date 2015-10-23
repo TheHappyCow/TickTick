@@ -3,20 +3,25 @@ using Microsoft.Xna.Framework;
 
 partial class Player :  AnimatedGameObject
 {
+    //De speler springt
     public void Jump(float speed = 1100)
     {
         velocity.Y = -speed;
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_jump");
     }
     
+    //Bij speciale situaties handelt deze methode de physics af
     private void DoPhysics()
     {
         if (!exploded)
+            //Zorgt voor de zwaartekracht; als hij valt, gaat hij steeds sneller en als hij springt, 
+            //gaat hij steeds langzamer omhoog totdat hij heel even blijft zweven in de lucht en dan steeds sneller daalt
             velocity.Y += 55;
         if (isAlive)
             HandleCollisions();
     }
 
+    //Kijkt waarmee de speler allemaal in contact is (de grond)
     private void HandleCollisions()
     {
         isOnTheGround = false;

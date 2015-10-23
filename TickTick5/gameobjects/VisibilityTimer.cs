@@ -6,6 +6,7 @@ class VisibilityTimer : GameObject
     protected float timeleft;
     protected float totaltime;
 
+    //Dit is de timer die je kan gebruiken om tekst tijdelijk om het scherm te tonen
     public VisibilityTimer(GameObject target, int layer=0, string id = "")
         : base(layer, id)
     {
@@ -21,6 +22,7 @@ class VisibilityTimer : GameObject
             target.Visible = false;
     }
 
+    //Start de timer
     public void StartVisible()
     {
         timeleft = totaltime;

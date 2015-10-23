@@ -5,12 +5,14 @@ public class DrawingHelper
 {
     protected static Texture2D pixel;
 
+    //Vormt een witte pixel
     public static void Initialize(GraphicsDevice graphics)
     {
         pixel = new Texture2D(graphics, 1, 1);
         pixel.SetData(new[] { Color.White });
     }
 
+    //Vult een rechthoek met dezelfde pixel met een gegeven kleur
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col)
     {
         int bw = 2; // Border width

@@ -20,7 +20,7 @@ class TickTick : GameEnvironment
         base.LoadContent();
 
         screen = new Point(1440, 825);
-        this.SetFullScreen(false);
+        this.SetFullScreen(true);
 
         gameStateManager.AddGameState("titleMenu", new TitleMenuState());
         gameStateManager.AddGameState("helpState", new HelpState());

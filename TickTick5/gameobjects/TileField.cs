@@ -5,6 +5,7 @@ class TileField : GameObjectGrid
     {
     }
 
+    //Kijkt wat het type is van de tile op coördinaat x, y
     public TileType GetTileType(int x, int y)
     {
         if (x < 0 || x >= Columns)

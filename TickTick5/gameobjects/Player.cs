@@ -42,18 +42,23 @@ partial class Player : AnimatedGameObject
     public override void HandleInput(InputHelper inputHelper)
     {
         float walkingSpeed = 400;
+        //Als hij over een ijsblokje heen loopt, gaat hij steeds sneller
         if (walkingOnIce)
             walkingSpeed *= 1.5f;
         if (!isAlive)
             return;
+        //Hij beweegt naar links
         if (inputHelper.IsKeyDown(Keys.Left))
             velocity.X = -walkingSpeed;
+        //Hij beweegt naar rechts
         else if (inputHelper.IsKeyDown(Keys.Right))
             velocity.X = walkingSpeed;
+        //Als hij niet op ijs staat, kan hij stilstaan
         else if (!walkingOnIce && isOnTheGround)
             velocity.X = 0.0f;
         if (velocity.X != 0.0f)
             Mirror = velocity.X < 0;
+        //Hij springt als hij op de grond staat en er op spatie wordt gedrukt
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
             Jump();
     }
@@ -63,6 +68,7 @@ partial class Player : AnimatedGameObject
         base.Update(gameTime);
         if (!finished && isAlive)
         {
+            //Laadt verschillende animaties afhankelijk van de beweging dat hij aan het maken is (of juist geen beweging)
             if (isOnTheGround)
                 if (velocity.X == 0)
                     this.PlayAnimation("idle");
@@ -72,23 +78,27 @@ partial class Player : AnimatedGameObject
                 this.PlayAnimation("jump");
 
             TimerGameObject timer = GameWorld.Find("timer") as TimerGameObject;
+            //De tijd gaat sneller als je op hete blokjes loopt
             if (walkingOnHot)
                 timer.Multiplier = 2;
+            //De tijd gaat langzamer als je op ijs blokjes loopt
             else if (walkingOnIce)
                 timer.Multiplier = 0.5;
             else
                 timer.Multiplier = 1;
 
             TileField tiles = GameWorld.Find("tiles") as TileField;
+            //Als hij uit veld valt, gaat hij dood
             if (BoundingBox.Top >= tiles.Rows * tiles.CellHeight)
                 this.Die(true);
         }
-
         DoPhysics();
     }
 
+    //Laat de speler exploderen
     public void Explode()
     {
+        //Hij kan niet exploderen als het level gehaald is
         if (!isAlive || finished)
             return;
         isAlive = false;
@@ -98,12 +108,15 @@ partial class Player : AnimatedGameObject
         this.PlayAnimation("explode");
     }
 
+    //Laat de speler doodgaan
     public void Die(bool falling)
     {
+        //Kan niet doodgaan als het level al gehaald is of als de speler al dood is
         if (!isAlive || finished)
             return;
         isAlive = false;
         velocity.X = 0.0f;
+        //Speelt verschillende geluidjes af afhankelijk van de manie van doodgaan
         if (falling)
             GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_fall");
         else

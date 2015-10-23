@@ -10,6 +10,7 @@ class Button : SpriteGameObject
         pressed = false;
     }
 
+    //Controleer of iemand op de button drukt
     public override void HandleInput(InputHelper inputHelper)
     {
         pressed = inputHelper.MouseLeftButtonPressed() &&

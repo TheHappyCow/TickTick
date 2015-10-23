@@ -25,8 +25,10 @@ class TitleMenuState : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
+        //Gaat naar het levelmenu
         if (playButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("levelMenu");
+        //Gaat naar helpmenu
         else if (helpButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("helpState");
     }

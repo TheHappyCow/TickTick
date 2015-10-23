@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 
 class UnpredictableEnemy : PatrollingEnemy
 {
+    //Upgrade van de PatrollingEnemy, deze is onvoorspelbaar, dus beweegt willekeurig met willekeurige snelheid
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);

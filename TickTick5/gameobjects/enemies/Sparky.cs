@@ -18,6 +18,7 @@ class Sparky : AnimatedGameObject
 
     public override void Reset()
     {
+        //De tijd dat hij onschadelijk is
         idleTime = (float)GameEnvironment.Random.NextDouble() * 5;
         this.position.Y = initialY;
         yoffset = 120;
@@ -27,6 +28,7 @@ class Sparky : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        //Maakt hem schadelijk
         if (idleTime <= 0)
         {
             this.PlayAnimation("electrocute");
@@ -54,6 +56,7 @@ class Sparky : AnimatedGameObject
         CheckPlayerCollision();
     }
 
+    //Kijkt of hij de speler raakt
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;

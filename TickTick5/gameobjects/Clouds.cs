@@ -5,6 +5,7 @@ class Clouds : GameObjectList
     public Clouds(int layer = 0, string id = "")
         : base(layer, id)
     {
+        //Hij laadt hier 3 wolkjes met random positie en snelheid
         for (int i = 0; i < 3; i++)
         {
             SpriteGameObject cloud = new SpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1), 2);
@@ -20,6 +21,7 @@ class Clouds : GameObjectList
         foreach (GameObject obj in gameObjects)
         {
             SpriteGameObject c = obj as SpriteGameObject;
+            //Als hij uit het scherm verdwenen is en hij zich uit het scherm blijft bewegen, wordt het wolkje verwijderd en een nieuw wolkje gevormd
             if ((c.Velocity.X < 0 && c.Position.X + c.Width < 0) || (c.Velocity.X > 0 && c.Position.X > GameEnvironment.Screen.X))
             {
                 this.Remove(c);

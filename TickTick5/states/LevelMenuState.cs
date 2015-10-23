@@ -30,6 +30,7 @@ class LevelMenuState : GameObjectList
         this.Add(backButton);
     }
 
+    //Hier kan je het level selecteren
     public int LevelSelected
     {
         get
@@ -48,12 +49,14 @@ class LevelMenuState : GameObjectList
     {
         base.HandleInput(inputHelper);
 
+        //Hier gaat hij naar het level
         if (LevelSelected != -1)
         {
             PlayingState playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
             playingState.CurrentLevelIndex = LevelSelected - 1;
             GameEnvironment.GameStateManager.SwitchTo("playingState");
         }
+        //Hier gaat hij naar het hoofdmenu
         else if (backButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("titleMenu");
     }
