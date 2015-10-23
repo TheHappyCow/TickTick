@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 class Rocket : AnimatedGameObject
 {
@@ -46,6 +47,15 @@ class Rocket : AnimatedGameObject
     {
         Player player = GameWorld.Find("player") as Player;
         if (this.CollidesWith(player) && this.Visible)
-            player.Die(false);
+        {
+            if (player.BoundingBox.Bottom + player.GlobalPosition.Y <= BoundingBox.Top + GlobalPosition.Y && player.IsAlive)
+            {
+                //De raket gaat "dood"
+                player.Jump(700);
+                this.Reset();
+            }
+            else
+                player.Die(false);
+        }
     }
 }

@@ -10,7 +10,7 @@ partial class Player :  AnimatedGameObject
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_jump");
     }
     
-    //Bij speciale situaties handelt deze methode de physics af
+    //De physics
     private void DoPhysics()
     {
         if (!exploded)

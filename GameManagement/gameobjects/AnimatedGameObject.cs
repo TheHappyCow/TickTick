@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System;
 
 public class AnimatedGameObject : SpriteGameObject
 {
@@ -20,7 +21,7 @@ public class AnimatedGameObject : SpriteGameObject
 
     public void PlayAnimation(string id)
     {
-        if (sprite == animations[id])   //Als het al geladen is
+        if (sprite == animations[id])
             return;
         if (sprite != null)
             animations[id].Mirror = sprite.Mirror;

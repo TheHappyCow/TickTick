@@ -48,10 +48,10 @@ partial class Player : AnimatedGameObject
         if (!isAlive)
             return;
         //Hij beweegt naar links
-        if (inputHelper.IsKeyDown(Keys.Left))
+        if (inputHelper.IsKeyDown(Keys.A))
             velocity.X = -walkingSpeed;
         //Hij beweegt naar rechts
-        else if (inputHelper.IsKeyDown(Keys.Right))
+        else if (inputHelper.IsKeyDown(Keys.D))
             velocity.X = walkingSpeed;
         //Als hij niet op ijs staat, kan hij stilstaan
         else if (!walkingOnIce && isOnTheGround)
@@ -59,8 +59,12 @@ partial class Player : AnimatedGameObject
         if (velocity.X != 0.0f)
             Mirror = velocity.X < 0;
         //Hij springt als hij op de grond staat en er op spatie wordt gedrukt
-        if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
+        if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.W)) && isOnTheGround)
             Jump();
+        if (inputHelper.KeyPressed(Keys.E))
+        {
+            /*schieten*/
+        }
     }
 
     public override void Update(GameTime gameTime)
