@@ -9,8 +9,18 @@ class PatrollingEnemy : AnimatedGameObject
     {
         waitTime = 0.0f;
         velocity.X = 120;
+        visible = true;
         this.LoadAnimation("Sprites/Flame/spr_flame@9", "default", true);
         this.PlayAnimation("default");
+    }
+
+    public override void Reset()
+    {
+        Projectile projectile = GameWorld.Find("projectile") as Projectile;
+        if (this.CollidesWith(projectile))
+            visible = false;
+        else
+            base.Reset();
     }
 
     public override void Update(GameTime gameTime)

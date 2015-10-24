@@ -37,12 +37,16 @@ partial class Level : GameObjectList
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         this.Add(quitButton);
 
-
         this.Add(new GameObjectList(1, "waterdrops"));
         this.Add(new GameObjectList(2, "enemies"));
 
         //Laadt de tekst waarin het level beschreven staat
         this.LoadTiles("Content/Levels/" + levelIndex + ".txt");
+
+        Player player = GameWorld.Find("player") as Player;
+        Vector2 startPosition = player.GlobalPosition - new Vector2(0, player.Center.Y);
+        Projectile projectile = new Projectile(startPosition);
+        this.Add(projectile);
     }
 
     //Kijkt of het level voltooid is

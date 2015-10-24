@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System;
 
 public class AnimatedGameObject : SpriteGameObject
 {

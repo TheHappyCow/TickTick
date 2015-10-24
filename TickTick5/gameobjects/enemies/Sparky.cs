@@ -13,16 +13,28 @@ class Sparky : AnimatedGameObject
         this.LoadAnimation("Sprites/Sparky/spr_idle", "idle", true);
         this.PlayAnimation("idle");
         this.initialY = initialY;
-        Reset();
-    }
-
-    public override void Reset()
-    {
         //De tijd dat hij onschadelijk is
         idleTime = (float)GameEnvironment.Random.NextDouble() * 5;
         this.position.Y = initialY;
         yoffset = 120;
         velocity = Vector2.Zero;
+    }
+
+    public override void Reset()
+    {
+        Projectile projectile = GameWorld.Find("projectile") as Projectile;
+        if (this.CollidesWith(projectile))
+        {
+            velocity.Y = -350;
+        }
+        else
+        {
+            //De tijd dat hij onschadelijk is
+            idleTime = (float)GameEnvironment.Random.NextDouble() * 5;
+            this.position.Y = initialY;
+            yoffset = 120;
+            velocity = Vector2.Zero;
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -52,7 +64,6 @@ class Sparky : AnimatedGameObject
                 this.velocity.Y = 300;
 
         }
-
         CheckPlayerCollision();
     }
 

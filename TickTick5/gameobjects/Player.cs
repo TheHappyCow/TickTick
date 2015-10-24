@@ -61,10 +61,6 @@ partial class Player : AnimatedGameObject
         //Hij springt als hij op de grond staat en er op spatie wordt gedrukt
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.W)) && isOnTheGround)
             Jump();
-        if (inputHelper.KeyPressed(Keys.E))
-        {
-            /*schieten*/
-        }
     }
 
     public override void Update(GameTime gameTime)

@@ -135,6 +135,7 @@
     <Compile Include="gameobjects\enemies\Turtle.cs" />
     <Compile Include="gameobjects\enemies\UnpredictableEnemy.cs" />
     <Compile Include="gameobjects\enemies\PatrollingEnemy.cs" />
+    <Compile Include="gameobjects\Projectile.cs" />
     <Compile Include="gameobjects\VisibilityTimer.cs" />
     <Compile Include="gameobjects\WaterDrop.cs" />
     <Compile Include="gameobjects\Player.cs" />
