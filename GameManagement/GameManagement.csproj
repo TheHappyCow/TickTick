@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="animation\Animation.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="GameEnvironment.cs" />

@@ -75,9 +75,9 @@ public class GameObjectList : GameObject
     {
         if (!visible)
             return;
-        List<GameObject>.Enumerator e = gameObjects.GetEnumerator();        
+        List<GameObject>.Enumerator e = gameObjects.GetEnumerator();
         while (e.MoveNext())
-            e.Current.Draw(gameTime, spriteBatch);
+                e.Current.Draw(gameTime, spriteBatch);
     }
 
     public override void Reset()

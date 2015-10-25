@@ -61,6 +61,7 @@ partial class Player : AnimatedGameObject
         //Hij springt als hij op de grond staat en er op spatie wordt gedrukt
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.W)) && isOnTheGround)
             Jump();
+        GameEnvironment.Camera.CameraPosition = -GlobalPosition.X + GameEnvironment.Screen.X / 2;
     }
 
     public override void Update(GameTime gameTime)

@@ -8,13 +8,14 @@ public class GameEnvironment : Game
     protected GraphicsDeviceManager graphics;
     protected SpriteBatch spriteBatch;
     protected InputHelper inputHelper;
-    protected Matrix spriteScale;
+    protected static Matrix spriteScale;
     
     protected static Point screen;
     protected static GameStateManager gameStateManager;
     protected static Random random;
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
+    protected static Camera camera;
 
     public GameEnvironment()
     {
@@ -54,6 +55,11 @@ public class GameEnvironment : Game
         get { return gameSettingsManager; }
     }
 
+    public static Camera Camera
+    {
+        get { return camera; }
+    }
+
     //Zet het scherm op fullscreen en schaalt de sprites dusdanig dat ze correct op het scherm worden getekend
     public void SetFullScreen(bool fullscreen = true)
     {
@@ -88,6 +94,7 @@ public class GameEnvironment : Game
     {
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
+        camera = new Camera(GraphicsDevice.Viewport);
     }
 
     protected void HandleInput()
@@ -111,8 +118,19 @@ public class GameEnvironment : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
+        IGameLoopObject currentGameState = GameEnvironment.GameStateManager.CurrentGameState;
+        IGameLoopObject playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as IGameLoopObject;
+        IGameLoopObject gameOverState = GameEnvironment.GameStateManager.GetGameState("gameOverState") as IGameLoopObject;
+        if (currentGameState == playingState || currentGameState == gameOverState)
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.Transformation());
+        else
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
         gameStateManager.Draw(gameTime, spriteBatch);
         spriteBatch.End();
+    }
+
+    public static Matrix SpriteScale
+    {
+        get { return spriteScale; }
     }
 }
