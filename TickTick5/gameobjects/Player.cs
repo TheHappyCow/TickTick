@@ -176,11 +176,11 @@ partial class Player : AnimatedGameObject
 
             SpriteGameObject mountain = mountainList.Objects[i] as SpriteGameObject;
             if (mountain.Layer == 1)
-                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.05f , 0);
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.50f , 0);
             else if (mountain.Layer == 2)
-                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.20f, 0);
-            else if (mountain.Layer == 3)
                 mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.35f, 0);
+            else if (mountain.Layer == 3)
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.20f, 0);
         }
     }
 }
