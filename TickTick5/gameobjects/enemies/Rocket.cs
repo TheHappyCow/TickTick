@@ -24,6 +24,9 @@ class Rocket : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
+        PlayingState playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
+        Level level = playingState.CurrentLevel;
+
         base.Update(gameTime);
         if (spawnTime > 0)
         {
@@ -36,7 +39,7 @@ class Rocket : AnimatedGameObject
             this.velocity.X *= -1f;
         CheckPlayerCollision();
         // check if we are outside the screen
-        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        Rectangle screenBox = new Rectangle(0, 0, (int)level.LevelWidth, GameEnvironment.Screen.Y);
         if (!screenBox.Intersects(this.BoundingBox))
             this.Reset();
     }

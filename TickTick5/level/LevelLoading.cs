@@ -181,4 +181,9 @@ partial class Level : GameObjectList
         waterdrops.Add(w);
         return new Tile();
     }
+
+    public float LevelWidth
+    {
+        get { return levelwidth; }
+    }
 }

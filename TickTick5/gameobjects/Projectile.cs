@@ -54,6 +54,8 @@ class Projectile: SpriteGameObject
     public override void Update(GameTime gameTime)
     {
         player = GameWorld.Find("player") as Player;
+        PlayingState playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
+        Level level = playingState.CurrentLevel;
         base.Update(gameTime);
         if (shooting)
         {
@@ -64,7 +66,7 @@ class Projectile: SpriteGameObject
         {
             position = player.GlobalPosition - new Vector2(0, player.Center.Y);
         }
-        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        Rectangle screenBox = new Rectangle(0, 0, (int)level.LevelWidth, GameEnvironment.Screen.Y);
         if (!screenBox.Intersects(this.BoundingBox))
             this.Reset();
         CheckCollision();
