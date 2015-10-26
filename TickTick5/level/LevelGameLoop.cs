@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 
 partial class Level : GameObjectList
 {
@@ -18,6 +19,9 @@ partial class Level : GameObjectList
     {
         base.Update(gameTime);
 
+        GameObjectList hintfield = this.Find("hintfield") as GameObjectList;
+        SpriteGameObject hint_frame = hintfield.Find("hint_frame") as SpriteGameObject;
+        SpriteGameObject timerBackground = this.Find("timerBackground") as SpriteGameObject;
         TimerGameObject timer = this.Find("timer") as TimerGameObject;
         Player player = this.Find("player") as Player;
 
@@ -35,6 +39,13 @@ partial class Level : GameObjectList
             player.LevelFinished();
             timer.Running = false;
         }
+
+        GameEnvironment.Camera.CameraPosition = -MathHelper.Clamp(player.GlobalPosition.X - (GameEnvironment.Screen.X - player.Width) / 2, 0, levelwidth - GameEnvironment.Screen.X);
+        //Laat bepaalde dingen met de camera meebewegen
+        quitButton.Position = new Vector2(-GameEnvironment.Camera.CameraPosition + GameEnvironment.Screen.X - quitButton.Width - 10, 10);
+        hintfield.Position = new Vector2(-GameEnvironment.Camera.CameraPosition + (GameEnvironment.Screen.X - hint_frame.Width) / 2, 10);
+        timerBackground.Position = new Vector2(-GameEnvironment.Camera.CameraPosition + 10, 10);
+        timer.Position = new Vector2(-GameEnvironment.Camera.CameraPosition + 25, 30);
     }
 
     public override void Reset()

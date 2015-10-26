@@ -4,18 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 public class Camera
 {
     Vector2 cameraPosition;
-    Viewport viewport;
     Matrix camera;
     
-    public Camera(Viewport viewp)
+    public Camera()
     {
-        this.viewport = viewp;
         cameraPosition = Vector2.Zero;
-    }
-    
-    public void MovePosition(Vector2 value)
-    {
-        cameraPosition += value;
     }
 
     public Matrix Transformation()

@@ -25,7 +25,8 @@ class Sparky : AnimatedGameObject
         Projectile projectile = GameWorld.Find("projectile") as Projectile;
         if (this.CollidesWith(projectile))
         {
-            velocity.Y = -350;
+            if (yoffset < 120)
+                velocity.Y = -350;
         }
         else
         {

@@ -1,32 +1,38 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 partial class Level : GameObjectList
 {
     protected bool locked, solved;
     protected Button quitButton;
+    Dictionary<int, Vector2> mountainpositions;
 
     public Level(int levelIndex)
     {
         // load the backgrounds
         GameObjectList backgrounds = new GameObjectList(0, "backgrounds");
-        SpriteGameObject background_main = new SpriteGameObject("Backgrounds/spr_sky");
+        SpriteGameObject background_main = new SpriteGameObject("Backgrounds/spr_sky", 0, "background");
         background_main.Position = new Vector2(0, GameEnvironment.Screen.Y - background_main.Height);
         backgrounds.Add(background_main);
 
         // add a few random mountains
+        GameObjectList mountainList = new GameObjectList(1, "mountainList");
+        mountainpositions = new Dictionary<int, Vector2>(); 
         for (int i = 0; i < 5; i++)
         {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 1);
+            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), (i % 3) + 1, "mountain" + (i+1));
             mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, GameEnvironment.Screen.Y - mountain.Height);
-            backgrounds.Add(mountain);
+            mountainpositions.Add(i, mountain.Position);
+            mountainList.Add(mountain);
         }
+        backgrounds.Add(mountainList);
 
         //Creëert de wolkjes en plaatst ze in de achtergrond
         Clouds clouds = new Clouds(2);
         backgrounds.Add(clouds);
         this.Add(backgrounds);
 
-        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
+        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100, "timerBackground");
         timerBackground.Position = new Vector2(10, 10);
         this.Add(timerBackground);
         TimerGameObject timer = new TimerGameObject(101, "timer");
@@ -89,6 +95,11 @@ partial class Level : GameObjectList
     {
         get { return solved; }
         set { solved = value; }
+    }
+
+    public Dictionary<int, Vector2> MountainPositions
+    {
+        get { return mountainpositions; }
     }
 }
 

@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 partial class Player : AnimatedGameObject
 {
@@ -11,6 +12,8 @@ partial class Player : AnimatedGameObject
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
+    protected bool walking;
+    float walkingSpeed;
 
     public Player(Vector2 start) : base(2, "player")
     {
@@ -19,8 +22,9 @@ partial class Player : AnimatedGameObject
         this.LoadAnimation("Sprites/Player/spr_jump@14", "jump", false, 0.05f); 
         this.LoadAnimation("Sprites/Player/spr_celebrate@14", "celebrate", false, 0.05f);
         this.LoadAnimation("Sprites/Player/spr_die@5", "die", false);
-        this.LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f); 
+        this.LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f);
 
+        walking = false;
         startPosition = start;
         Reset();
     }
@@ -37,11 +41,12 @@ partial class Player : AnimatedGameObject
         walkingOnHot = false;
         this.PlayAnimation("idle");
         previousYPosition = BoundingBox.Bottom;
+        walking = false;
     }
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        float walkingSpeed = 400;
+        walkingSpeed = 400;
         //Als hij over een ijsblokje heen loopt, gaat hij steeds sneller
         if (walkingOnIce)
             walkingSpeed *= 1.5f;
@@ -49,19 +54,28 @@ partial class Player : AnimatedGameObject
             return;
         //Hij beweegt naar links
         if (inputHelper.IsKeyDown(Keys.A))
+        {
             velocity.X = -walkingSpeed;
+            walking = true;
+        }
         //Hij beweegt naar rechts
         else if (inputHelper.IsKeyDown(Keys.D))
+        {
             velocity.X = walkingSpeed;
+            walking = true;
+        }
         //Als hij niet op ijs staat, kan hij stilstaan
         else if (!walkingOnIce && isOnTheGround)
+        {
+            walking = false;
             velocity.X = 0.0f;
+        }
         if (velocity.X != 0.0f)
             Mirror = velocity.X < 0;
         //Hij springt als hij op de grond staat en er op spatie wordt gedrukt
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.W)) && isOnTheGround)
             Jump();
-        GameEnvironment.Camera.CameraPosition = -GlobalPosition.X + GameEnvironment.Screen.X / 2;
+        Parallax();
     }
 
     public override void Update(GameTime gameTime)
@@ -144,5 +158,29 @@ partial class Player : AnimatedGameObject
         velocity.X = 0.0f;
         this.PlayAnimation("celebrate");
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_won");
+    }
+
+    //Adds parallax scrolling
+    public void Parallax()
+    {
+        PlayingState playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
+        Level level = playingState.CurrentLevel;
+        GameObjectList mountainList = level.Find("mountainList") as GameObjectList;
+        Vector2 originalmountainposition = Vector2.Zero;
+
+        for (int i = 0; i < mountainList.Objects.Count; i++)
+        {
+            foreach (KeyValuePair<int, Vector2>pair in level.MountainPositions)
+                if (pair.Key == i)
+                    originalmountainposition = pair.Value;
+
+            SpriteGameObject mountain = mountainList.Objects[i] as SpriteGameObject;
+            if (mountain.Layer == 1)
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.05f , 0);
+            else if (mountain.Layer == 2)
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.20f, 0);
+            else if (mountain.Layer == 3)
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.35f, 0);
+        }
     }
 }

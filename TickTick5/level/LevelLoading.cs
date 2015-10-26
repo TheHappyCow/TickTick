@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 
 partial class Level : GameObjectList
 {
+    float levelwidth;
+
     public void LoadTiles(string path)
     {
         //Haalt de tekst uit tekstfile
@@ -21,13 +23,13 @@ partial class Level : GameObjectList
         TileField tiles = new TileField(textlines.Count - 1, width, 1, "tiles");
 
         //Plaatst de hintbutton
-        GameObjectList hintfield = new GameObjectList(100);
+        GameObjectList hintfield = new GameObjectList(100, "hintfield");
         this.Add(hintfield);
         string hint = textlines[textlines.Count - 1];
-        SpriteGameObject hint_frame = new SpriteGameObject("Overlays/spr_frame_hint", 1);
+        SpriteGameObject hint_frame = new SpriteGameObject("Overlays/spr_frame_hint", 1, "hint_frame");
         hintfield.Position = new Vector2((GameEnvironment.Screen.X - hint_frame.Width) / 2, 10);
         hintfield.Add(hint_frame);
-        TextGameObject hintText = new TextGameObject("Fonts/HintFont", 2);
+        TextGameObject hintText = new TextGameObject("Fonts/HintFont", 2, "hintText");
         hintText.Text = textlines[textlines.Count - 1];
         hintText.Position = new Vector2(120, 25);
         hintText.Color = Color.Black;
@@ -45,6 +47,8 @@ partial class Level : GameObjectList
                 Tile t = LoadTile(textlines[y][x], x, y);
                 tiles.Add(t, x, y);
             }
+
+        levelwidth = width * tiles.CellWidth;
     }
 
     //Laadt een tile afhankelijk van het character in de tekst op de positie x, y

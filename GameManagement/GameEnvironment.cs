@@ -94,7 +94,7 @@ public class GameEnvironment : Game
     {
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
-        camera = new Camera(GraphicsDevice.Viewport);
+        camera = new Camera();
     }
 
     protected void HandleInput()
@@ -121,7 +121,8 @@ public class GameEnvironment : Game
         IGameLoopObject currentGameState = GameEnvironment.GameStateManager.CurrentGameState;
         IGameLoopObject playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as IGameLoopObject;
         IGameLoopObject gameOverState = GameEnvironment.GameStateManager.GetGameState("gameOverState") as IGameLoopObject;
-        if (currentGameState == playingState || currentGameState == gameOverState)
+        IGameLoopObject levelFinishedState = GameEnvironment.GameStateManager.GetGameState("levelFinishedState") as IGameLoopObject;
+        if (currentGameState == playingState || currentGameState == gameOverState || currentGameState == levelFinishedState)
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.Transformation());
         else
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
