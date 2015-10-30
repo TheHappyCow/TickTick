@@ -66,7 +66,7 @@ class Projectile: SpriteGameObject
         {
             position = player.GlobalPosition - new Vector2(0, player.Center.Y);
         }
-        Rectangle screenBox = new Rectangle(0, 0, (int)level.LevelWidth, GameEnvironment.Screen.Y);
+        Rectangle screenBox = new Rectangle(0, 0, (int)level.LevelWidth, (int)level.LevelHeight);
         if (!screenBox.Intersects(this.BoundingBox))
             this.Reset();
         CheckCollision();

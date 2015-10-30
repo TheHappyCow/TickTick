@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
+using System;
 
 partial class Level : GameObjectList
 {
-    float levelwidth;
+    float levelwidth, levelheight;
 
     public void LoadTiles(string path)
     {
@@ -19,18 +20,29 @@ partial class Level : GameObjectList
             textlines.Add(line);
             line = fileReader.ReadLine();
         }
+
+        int i = int.Parse(textlines[textlines.Count - 1]);
+        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100, "timerBackground");
+        timerBackground.Position = new Vector2(10, 10);
+        this.Add(timerBackground);
+        TimerGameObject timer = new TimerGameObject(i, 101, "timer");
+        timer.Position = new Vector2(25, 30);
+        this.Add(timer);
+
+        int height = textlines.Count - 2;
+
         //Creëert het speelveld
-        TileField tiles = new TileField(textlines.Count - 1, width, 1, "tiles");
+        TileField tiles = new TileField(textlines.Count - 2, width, 1, "tiles");
 
         //Plaatst de hintbutton
         GameObjectList hintfield = new GameObjectList(100, "hintfield");
         this.Add(hintfield);
-        string hint = textlines[textlines.Count - 1];
+        string hint = textlines[textlines.Count - 2];
         SpriteGameObject hint_frame = new SpriteGameObject("Overlays/spr_frame_hint", 1, "hint_frame");
         hintfield.Position = new Vector2((GameEnvironment.Screen.X - hint_frame.Width) / 2, 10);
         hintfield.Add(hint_frame);
         TextGameObject hintText = new TextGameObject("Fonts/HintFont", 2, "hintText");
-        hintText.Text = textlines[textlines.Count - 1];
+        hintText.Text = hint;
         hintText.Position = new Vector2(120, 25);
         hintText.Color = Color.Black;
         hintfield.Add(hintText);
@@ -42,13 +54,14 @@ partial class Level : GameObjectList
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
         for (int x = 0; x < width; ++x)
-            for (int y = 0; y < textlines.Count - 1; ++y)
+            for (int y = 0; y < textlines.Count - 2; ++y)
             {
                 Tile t = LoadTile(textlines[y][x], x, y);
                 tiles.Add(t, x, y);
             }
 
         levelwidth = width * tiles.CellWidth;
+        levelheight = height * tiles.CellHeight;
     }
 
     //Laadt een tile afhankelijk van het character in de tekst op de positie x, y
@@ -185,5 +198,10 @@ partial class Level : GameObjectList
     public float LevelWidth
     {
         get { return levelwidth; }
+    }
+
+    public float LevelHeight
+    {
+        get { return levelheight; }
     }
 }

@@ -14,7 +14,7 @@ class Button : SpriteGameObject
     public override void HandleInput(InputHelper inputHelper)
     {
         pressed = inputHelper.MouseLeftButtonPressed() &&
-            BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
+            BoundingBox.Contains((int)inputHelper.MousePosition.X - (int)GameEnvironment.Camera.CameraPositionX, (int)inputHelper.MousePosition.Y - (int)GameEnvironment.Camera.CameraPositionY);
     }
 
     public override void Reset()

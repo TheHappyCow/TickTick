@@ -17,9 +17,15 @@ public class Camera
         return camera;
     }
 
-    public float CameraPosition
+    public float CameraPositionX
     {
         get { return cameraPosition.X; }
         set { cameraPosition.X = value; }
+    }
+
+    public float CameraPositionY
+    {
+        get { return cameraPosition.Y; }
+        set { cameraPosition.Y = value; }
     }
 }

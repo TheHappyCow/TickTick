@@ -1,18 +1,21 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
 
 class TimerGameObject : TextGameObject
 {
-    protected TimeSpan timeLeft;
+    protected TimeSpan timeLeft, originaltimeLeft;
     protected bool running;
     protected double multiplier;
 
     //Dit is de timer, die bijhoudt hoeveel tijd je nog over hebt om een level te halen
-    public TimerGameObject(int layer = 0, string id = "")
+    public TimerGameObject(int seconds, int layer = 0, string id = "")
         : base("Fonts/Hud", layer, id)
     {
         this.multiplier = 1;
-        this.timeLeft = TimeSpan.FromMinutes(0.5);
+        this.timeLeft = TimeSpan.FromSeconds(seconds);
+        originaltimeLeft = timeLeft;
         this.running = true;
     }
 
@@ -35,7 +38,7 @@ class TimerGameObject : TextGameObject
     public override void Reset()
     {
         base.Reset();
-        this.timeLeft = TimeSpan.FromMinutes(0.5);
+        this.timeLeft = originaltimeLeft;
         this.running = true;
     }
 

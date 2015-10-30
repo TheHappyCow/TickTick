@@ -15,7 +15,7 @@ class LevelMenuState : GameObjectList
         this.Add(background);
 
         // add the level buttons
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 12; i++)
         {
             int row = i / 4;
             int column = i % 4;

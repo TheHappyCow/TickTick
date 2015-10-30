@@ -14,3 +14,4 @@ r....W...W...W...W..
 .W...W...W...W....1.
 ####################
 Red tiles are hot and reduce the time before you explode.
+30

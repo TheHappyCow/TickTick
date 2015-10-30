@@ -32,13 +32,6 @@ partial class Level : GameObjectList
         backgrounds.Add(clouds);
         this.Add(backgrounds);
 
-        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100, "timerBackground");
-        timerBackground.Position = new Vector2(10, 10);
-        this.Add(timerBackground);
-        TimerGameObject timer = new TimerGameObject(101, "timer");
-        timer.Position = new Vector2(25, 30);
-        this.Add(timer);
-
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         this.Add(quitButton);

@@ -27,12 +27,16 @@ class GameOverState : GameObjectList
     public override void Update(GameTime gameTime)
     {
         playingState.Update(gameTime);
-        overlay.Position = new Vector2(-GameEnvironment.Camera.CameraPosition + GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2) - overlay.Center;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         playingState.Draw(gameTime, spriteBatch);
         base.Draw(gameTime, spriteBatch);
+    }
+
+    public SpriteGameObject Overlay
+    {
+        get { return overlay; }
     }
 }

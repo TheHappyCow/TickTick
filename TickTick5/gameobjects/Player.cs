@@ -167,6 +167,7 @@ partial class Player : AnimatedGameObject
         Level level = playingState.CurrentLevel;
         GameObjectList mountainList = level.Find("mountainList") as GameObjectList;
         Vector2 originalmountainposition = Vector2.Zero;
+        TileField tiles = level.Find("tiles") as TileField;
 
         for (int i = 0; i < mountainList.Objects.Count; i++)
         {
@@ -175,12 +176,13 @@ partial class Player : AnimatedGameObject
                     originalmountainposition = pair.Value;
 
             SpriteGameObject mountain = mountainList.Objects[i] as SpriteGameObject;
+            originalmountainposition.Y = level.LevelHeight - mountain.Height;
             if (mountain.Layer == 1)
-                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.50f , 0);
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPositionX * 0.50f, -GameEnvironment.Camera.CameraPositionY * 0.30f);
             else if (mountain.Layer == 2)
-                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.35f, 0);
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPositionX * 0.35f, -GameEnvironment.Camera.CameraPositionY * 0.15f);
             else if (mountain.Layer == 3)
-                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPosition * 0.20f, 0);
+                mountain.Position = originalmountainposition + new Vector2(-GameEnvironment.Camera.CameraPositionX * 0.20f, -GameEnvironment.Camera.CameraPositionY * 0.05f);
         }
     }
 }
