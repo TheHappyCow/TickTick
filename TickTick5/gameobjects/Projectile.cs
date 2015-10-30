@@ -78,7 +78,13 @@ class Projectile: SpriteGameObject
         for (int i = 0; i < enemies.Objects.Count; i++ )
             if (this.CollidesWith(enemies.Objects[i] as SpriteGameObject) && this.Visible)
             {
-                enemies.Objects[i].Reset();
+                if (enemies.Objects[i] is Rocket)
+                {
+                    Rocket rocket = enemies.Objects[i] as Rocket;
+                    rocket.Explode = true;
+                }
+                else
+                    enemies.Objects[i].Reset();
                 this.Reset();
             }
 

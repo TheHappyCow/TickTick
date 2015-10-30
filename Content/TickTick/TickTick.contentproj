@@ -255,13 +255,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Rocket\spr_rocket%403.png">
-      <Name>spr_rocket%403</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Sparky\spr_idle.png">
       <Name>spr_idle</Name>
       <Importer>TextureImporter</Importer>
@@ -440,6 +433,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>12</Name>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Rocket\spr_rocket%403.png">
+      <Name>spr_rocket%403</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
