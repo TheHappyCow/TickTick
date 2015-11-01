@@ -45,6 +45,9 @@ partial class Player :  AnimatedGameObject
                 boundingBox.Height += 1;
                 if (((currentTile != null && !currentTile.CollidesWith(this)) || currentTile == null) && !tileBounds.Intersects(boundingBox))
                     continue;
+                if (currentTile != null)
+                    if (currentTile.Lever && !currentTile.Visible)
+                        continue;
                 Vector2 depth = Collision.CalculateIntersectionDepth(boundingBox, tileBounds);
                 if (Math.Abs(depth.X) < Math.Abs(depth.Y))
                 {

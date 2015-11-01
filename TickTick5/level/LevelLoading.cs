@@ -21,6 +21,7 @@ partial class Level : GameObjectList
             line = fileReader.ReadLine();
         }
 
+        //Tijdslimiet i wordt afgelezen uit tekstfile
         int i = int.Parse(textlines[textlines.Count - 1]);
         SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100, "timerBackground");
         timerBackground.Position = new Vector2(10, 10);
@@ -81,6 +82,8 @@ partial class Level : GameObjectList
                 return LoadEndTile(x, y);
             case 'W':
                 return LoadWaterTile(x, y);
+            case 'P':
+                return LoadPowerupTile(x, y);
             case '1':
                 return LoadStartTile(x, y);
             case '#':
@@ -89,6 +92,8 @@ partial class Level : GameObjectList
                 return LoadBasicTile("spr_wall_hot", TileType.Normal, true, false);
             case '*':
                 return LoadBasicTile("spr_wall_ice", TileType.Normal, false, true);
+            case '&':
+                return LoadBasicTile("spr_walllever", TileType.Normal, false, false, true);
             case 'T':
                 return LoadTurtleTile(x, y);
             case 'R':
@@ -101,6 +106,8 @@ partial class Level : GameObjectList
             case 'B':
             case 'C':
                 return LoadFlameTile(x, y, tileType);
+            case 'L':
+                return LoadLeverTile(x, y);
             default:
                 return new Tile("");
         }
@@ -108,11 +115,12 @@ partial class Level : GameObjectList
 
     //Laadt de verschillende tiles
 
-    private Tile LoadBasicTile(string name, TileType tileType, bool hot = false, bool ice = false)
+    private Tile LoadBasicTile(string name, TileType tileType, bool hot = false, bool ice = false, bool lever = false)
     {
         Tile t = new Tile("Tiles/" + name, tileType);
         t.Hot = hot;
         t.Ice = ice;
+        t.Lever = lever;
         return t;
     }
 
@@ -183,6 +191,17 @@ partial class Level : GameObjectList
         return new Tile();
     }
 
+    private Tile LoadLeverTile(int x, int y)
+    {
+        GameObjectList levers = this.Find("levers") as GameObjectList;
+        TileField tiles = this.Find("tiles") as TileField;
+        Lever lever = new Lever();
+        lever.Origin = new Vector2(0, lever.Height);
+        lever.Position = new Vector2(x * tiles.CellWidth, (y+1) * tiles.CellHeight);
+        levers.Add(lever);
+        return new Tile();
+    }
+
     private Tile LoadWaterTile(int x, int y)
     {
         GameObjectList waterdrops = this.Find("waterdrops") as GameObjectList;
@@ -192,6 +211,18 @@ partial class Level : GameObjectList
         w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
         w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
         waterdrops.Add(w);
+        return new Tile();
+    }
+
+    private Tile LoadPowerupTile(int x, int y)
+    {
+        GameObjectList powerups = this.Find("powerups") as GameObjectList;
+        TileField tiles = this.Find("tiles") as TileField;
+        Powerup power = new Powerup();
+        power.Origin = power.Center;
+        power.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
+        power.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
+        powerups.Add(power);
         return new Tile();
     }
 

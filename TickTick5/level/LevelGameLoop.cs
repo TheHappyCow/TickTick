@@ -45,6 +45,7 @@ partial class Level : GameObjectList
         hintTimer.StartVisible();
     }
 
+    //Zorgt ervoor dat de dingen in het beeld de camera op de juiste manier volgen en dat de camerapositie wordt geupdate
     public void FollowCamera()
     {
         Player player = this.Find("player") as Player;

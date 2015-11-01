@@ -13,6 +13,7 @@ class Tile : SpriteGameObject
     protected TileType type;
     protected bool hot;
     protected bool ice;
+    protected bool lever;
 
     public Tile(string assetname = "", TileType tp = TileType.Background, int layer = 0, string id = "")
         : base(assetname, layer, id)
@@ -20,6 +21,7 @@ class Tile : SpriteGameObject
         type = tp;
         hot = false;
         ice = false;
+        lever = false;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -44,5 +46,11 @@ class Tile : SpriteGameObject
     {
         get { return ice; }
         set { ice = value; }
+    }
+
+    public bool Lever
+    {
+        get { return lever; }
+        set { lever = value; }
     }
 }

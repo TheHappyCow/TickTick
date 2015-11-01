@@ -59,4 +59,10 @@ class TimerGameObject : TextGameObject
     {
         get { return (timeLeft.Ticks <= 0); }
     }
+
+    public TimeSpan TimeLeft
+    {
+        get { return timeLeft; }
+        set { timeLeft = value; }
+    }
 }

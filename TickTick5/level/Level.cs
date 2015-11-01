@@ -37,7 +37,9 @@ partial class Level : GameObjectList
         this.Add(quitButton);
 
         this.Add(new GameObjectList(1, "waterdrops"));
+        this.Add(new GameObjectList(1, "powerups"));
         this.Add(new GameObjectList(2, "enemies"));
+        this.Add(new GameObjectList(2, "levers"));
 
         //Laadt de tekst waarin het level beschreven staat
         this.LoadTiles("Content/Levels/" + levelIndex + ".txt");

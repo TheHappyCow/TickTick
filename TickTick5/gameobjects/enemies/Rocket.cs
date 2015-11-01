@@ -52,7 +52,7 @@ class Rocket : AnimatedGameObject
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
-        if (this.CollidesWith(player) && this.Visible)
+        if (this.CollidesWith(player) && this.Visible && !explode)
         {
             if (player.BoundingBox.Bottom + player.GlobalPosition.Y <= BoundingBox.Top + GlobalPosition.Y && player.IsAlive)
             {

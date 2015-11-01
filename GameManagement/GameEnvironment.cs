@@ -117,11 +117,12 @@ public class GameEnvironment : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Black);
         IGameLoopObject currentGameState = GameEnvironment.GameStateManager.CurrentGameState;
         IGameLoopObject playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as IGameLoopObject;
         IGameLoopObject gameOverState = GameEnvironment.GameStateManager.GetGameState("gameOverState") as IGameLoopObject;
         IGameLoopObject levelFinishedState = GameEnvironment.GameStateManager.GetGameState("levelFinishedState") as IGameLoopObject;
+        
+        GraphicsDevice.Clear(Color.Black);
         if (currentGameState == playingState || currentGameState == gameOverState || currentGameState == levelFinishedState)
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.Transformation());
         else
